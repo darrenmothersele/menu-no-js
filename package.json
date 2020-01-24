@@ -13,7 +13,8 @@
     "tailwindcss": "^1.1.4"
   },
   "scripts": {
-    "build": "postcss style.css -o docs/style.css",
+    "build:dev": "postcss style.css -o docs/style.css",
+    "build:prod": "NODE_ENV=production postcss style.css -o docs/style.css",
     "start": "live-server docs"
   },
   "keywords": [],

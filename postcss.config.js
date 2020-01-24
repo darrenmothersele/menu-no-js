@@ -3,12 +3,14 @@ module.exports = {
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
-    require('@fullhuman/postcss-purgecss')({
-      content: [
-        './docs/**/*.html',
-      ],
-      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-    }),
+    ...process.env.NODE_ENV === 'production'
+      ? [require('@fullhuman/postcss-purgecss')({
+        content: [
+          './docs/**/*.html',
+        ],
+        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+      })]
+      : [],
     require('cssnano')
   ]
 };
